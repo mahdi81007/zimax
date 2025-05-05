@@ -1,1 +1,59 @@
 @import "tailwindcss";
+
+
+:root{
+    font-family: Poppins;
+}
+
+html {
+    font-size: 16px;
+    /*font-family: 'in';*/
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth !important;
+    font-family: Poppins !important;
+}
+
+
+a {
+    text-decoration: none;
+    /*color: var(--link);*/
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type='color'],
+input[type='date'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+input[type='week'],
+select:focus,
+textarea {
+    font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+i {
+    font-size: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
