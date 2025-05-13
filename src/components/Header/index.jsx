@@ -1,4 +1,4 @@
-import logoImg from '@/assets/images/logo/Logo.png'
+import logoImg from '../../../Logo.svg'
 import {
     Box,
     Burger,
@@ -12,8 +12,21 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import classes from './index.module.css';
 
+
+
+
 export function Header() {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
+
+    const links =[
+        {title :'Home' ,href : 'Home'},
+        {title :'Zimax Token' ,href : 'Home'},
+        {title :'NFT Marketplace' ,href : 'Home'},
+        {title :'Zimax Bank' ,href : 'Home'},
+        {title :'Bank15' ,href : 'Home'},
+        {title :'NFT Income Program' ,href : 'Home'},
+        {title :'Lottery' ,href : 'Home'},
+    ]
     return (
         <Container  size="md" pb={120}>
             <header className={classes.header}>
@@ -51,24 +64,28 @@ export function Header() {
                 onClose={closeDrawer}
                 size="100%"
                 padding="md"
-                title="Navigation"
+                title={<img className={'h-[46px]'} src={logoImg.src} alt={'logo'}/>}
                 hiddenFrom="sm"
                 zIndex={1000000}
+                classNames={{body: 'px-[24px]'}}
             >
+
+
                 <ScrollArea h="calc(100vh - 80px" mx="-md">
-                    <Divider my="sm" />
-
-                    <a href="#" className={classes.link}>
-                        Home
-                    </a>
-                    <a href="#" className={classes.link}>
-                        Learn
-                    </a>
-                    <a href="#" className={classes.link}>
-                        Academy
-                    </a>
-
-                    <Divider my="sm" />
+                    <div className={'flex flex-col text-[20px] px-[24px]'}>
+                        {links.map((link)=>(
+                            <a className={'py-[12px] border-b border-gray-400'} href={link.href}>{link.title}</a>
+                        ))}
+                    </div>
+                    {/*<a href="#" className={classes.link}>*/}
+                    {/*    Home*/}
+                    {/*</a>*/}
+                    {/*<a href="#" className={classes.link}>*/}
+                    {/*    Learn*/}
+                    {/*</a>*/}
+                    {/*<a href="#" className={classes.link}>*/}
+                    {/*    Academy*/}
+                    {/*</a>*/}
 
                     <Group justify="center" grow pb="xl" px="md">
                         {/*<Button variant="default">Log in</Button>*/}
