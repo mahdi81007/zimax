@@ -11,25 +11,57 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './index.module.css';
+import {useEffect, useState} from "react";
+import clsx from "clsx";
 
-
-
-
+const links =[
+    {title :'Zimax Token' ,href : '#zimax-token'},
+    {title :'NFT Marketplace' ,href : '#NFT-marketplace'},
+    {title :'Zimax Bank' ,href : '#zimax-bank'},
+    {title :'Bank15' ,href : '#bank15'},
+    {title :'NFT Income Program' ,href : '#NFT-income-program'},
+    {title :'Lottery' ,href : '#lottery'},
+]
 export function Header() {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
+    const [scrolledPastHero, setScrolledPastHero] = useState(false);
+    const [hidden, setHidden] = useState(false);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
-    const links =[
-        {title :'Home' ,href : 'Home'},
-        {title :'Zimax Token' ,href : 'Home'},
-        {title :'NFT Marketplace' ,href : 'Home'},
-        {title :'Zimax Bank' ,href : 'Home'},
-        {title :'Bank15' ,href : 'Home'},
-        {title :'NFT Income Program' ,href : 'Home'},
-        {title :'Lottery' ,href : 'Home'},
-    ]
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            const screenHeight = window.innerHeight;
+
+            // Only change styles if scroll past first viewport
+            const hasScrolledPastHero = currentScrollY > screenHeight;
+            setScrolledPastHero(hasScrolledPastHero);
+
+            // If not past 100vh, always show header
+            if (!hasScrolledPastHero) {
+                setHidden(false);
+            } else {
+                if (currentScrollY > lastScrollY) {
+                    setHidden(true); // scrolling down
+                } else {
+                    setHidden(false); // scrolling up
+                }
+            }
+
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
+
     return (
-        <Container  size="md" pb={120}>
-            <header className={classes.header}>
+        <   >
+            <header className={clsx(classes.header, {
+                [classes.scrolled]: scrolledPastHero,
+                [classes.hidden]: hidden && scrolledPastHero,
+            })}>
                 <Group justify="space-between" h="100%">
                     <img className={'w-[100px] h-[30px]'} src={logoImg.src} alt={'logo'} />
                     <Group h="100%" gap={0} visibleFrom="sm">
@@ -74,25 +106,15 @@ export function Header() {
                 <ScrollArea h="calc(100vh - 80px" mx="-md">
                     <div className={'flex flex-col text-[20px] px-[24px]'}>
                         {links.map((link)=>(
-                            <a className={'py-[12px] border-b border-gray-400'} href={link.href}>{link.title}</a>
+                            <a className={'py-[12px] border-b border-gray-400'} onClick={()=>closeDrawer()} href={link.href}>{link.title}</a>
                         ))}
                     </div>
-                    {/*<a href="#" className={classes.link}>*/}
-                    {/*    Home*/}
-                    {/*</a>*/}
-                    {/*<a href="#" className={classes.link}>*/}
-                    {/*    Learn*/}
-                    {/*</a>*/}
-                    {/*<a href="#" className={classes.link}>*/}
-                    {/*    Academy*/}
-                    {/*</a>*/}
-
                     <Group justify="center" grow pb="xl" px="md">
                         {/*<Button variant="default">Log in</Button>*/}
                         {/*<Button>Sign up</Button>*/}
                     </Group>
                 </ScrollArea>
             </Drawer>
-        </Container>
+        </>
     );
 }
