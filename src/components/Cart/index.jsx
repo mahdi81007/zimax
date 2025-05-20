@@ -1,37 +1,30 @@
 import React from 'react';
 import { Button, Center, Drawer } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import {useDisclosure} from '@mantine/hooks';
 import classes from './index.module.css';
 
 function Index({
                    title,
+    id,
                    className,
                    children,
                    isMore = true,
                    height = '', // default value if not provided
-    titleClassName,number,subTitle,img
+    titleClassName,number,subTitle,img,bottomImg
                }) {
-    const [drawerOpened, { open: openDrawer, close: closeDrawer }] = useDisclosure(false);
-
-    // Calculate reduced height (height - 50px)
-    const gradientHeight = typeof height === 'string' && height.endsWith('px')
-        ? `${parseInt(height) - 150}px`
-        : `calc(${height} - 50px)`;
-
+    const [drawerOpened, { open: openDrawer, close: closeDrawer }] = useDisclosure(false)
     return (
         <>
             <div
+                id={id}
                 className={`${className}  relative cart mt-[24px] ${number?'pt-[60px]':''} p-6 bg-gradient-to-b from-gray-100 to-blue-100 rounded-3xl outline outline-1 outline-offset-[-1px] outline-gray-400`}
-                style={{ height: height }}
             >
-                {number&&<div className={'text-[134px] font-normal absolute top-[-50px] left-2 text-blue-600 opacity-10'}>{number}</div>}
+                {number&&<div className={'text-[134px] font-semibold absolute top-[-30px] left-2 text-blue-6 opacity-10'}>{number}</div>}
                 <div className={`${titleClassName}  text-[20px] mb-[16px] font-bold`}>{title}</div>
-                <div className={'mt-[8px]'}>{subTitle}</div>
+                {subTitle && <div className={'mt-[8px]'}>{subTitle}</div>}
                 {img&&<img alt={'img'} src={img}/>}
-                <div className=" relative overflow-hidden">
-
-                    <div className={classes['gradiant-cart']}>{children}</div>
-
+                <div className=" relative ">
+                    <div className={isMore?classes['gradiant-cart']:''} style={{height:isMore?height:''}}>{children}</div>
                     <Center>
                         {isMore && (
                             <Button
@@ -45,6 +38,7 @@ function Index({
                             </Button>
                         )}
                     </Center>
+                    {bottomImg&&<img src={bottomImg} className={''} alt={'bottom-img'}/>}
                 </div>
 
                 {isMore && (
@@ -52,7 +46,7 @@ function Index({
                         opened={drawerOpened}
                         onClose={closeDrawer}
                         position="bottom"
-                        withCloseButton={false}
+                        withCloseButton={title?true:false}
                         classNames={{
                             title: 'w-full text-blue-600 font-bold text-[18px]',
                             header: 'w-full',
@@ -63,7 +57,7 @@ function Index({
                                 {title}
                                 <div
                                     onClick={closeDrawer}
-                                    className="w-[40px] h-[20px] cursor-pointer bg-Background-Gray-light rounded-3xl inline-flex justify-center items-center"
+                                    className="w-[40px] h-[20px] cursor-pointer bg-background-gray-light rounded-3xl inline-flex justify-center items-center"
                                 >
                                     {/* SVG Icon */}
                                     <svg
