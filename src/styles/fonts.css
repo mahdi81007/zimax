@@ -1,68 +1,76 @@
 @font-face {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    src: url("../assets/fonts/Poppins/poppins-bold-webfont.eot");
-    src: url("../assets/fonts/Poppins/poppins-bold-webfont.eot?#iefix")
-    format("embedded-opentype"),
-        /* IE6-8 */ url("../assets/fonts/Poppins/poppins-bold-webfont.woff2")
-    format("woff2"),
-        /* FF39+,Chrome36+, Opera24+*/
-    url("../assets/fonts/Poppins/poppins-bold-webfont.woff") format("woff"),
-        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-    url("../assets/fonts/Poppins/poppins-bold-webfont.ttf") format("truetype");
-}
-@font-face {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    src: url("../assets/fonts/Poppins/poppins-medium-webfont.eot");
-    src: url("../assets/fonts/Poppins/poppins-regular-webfont.eot?#iefix")
-    format("embedded-opentype"),
-        /* IE6-8 */ url("../assets/fonts/Poppins/poppins-medium-webfont.woff2")
-    format("woff2"),
-        /* FF39+,Chrome36+, Opera24+*/
-    url("../assets/fonts/Poppins/poppins-medium-webfont.woff") format("woff"),
-        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-    url("../assets/fonts/Poppins/poppins-medium-webfont.ttf") format("truetype");
-}
-@font-face {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 300;
-    src: url("../assets/fonts/Poppins/poppins-light-webfont.eot");
-    src: url("../assets/fonts/Poppins/poppins-light-webfont.eot?#iefix")
-    format("embedded-opentype"),
-        /* IE6-8 */ url("../assets/fonts/Poppins/poppins-light-webfont.woff2")
-    format("woff2"),
-        /* FF39+,Chrome36+, Opera24+*/
-    url("../assets/fonts/Poppins/poppins-light-webfont.woff") format("woff"),
-        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-    url("../assets/fonts/Poppins/poppins-light-webfont.ttf") format("truetype");
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/Poppins/Poppins-Medium.ttf") format("truetype"); /* Keep TTF as fallback */
 }
 
+@font-face {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500; /* Assuming Medium is weight 500 */
+  src:
+    url("../assets/fonts/Poppins/Poppins-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold; /* Assuming Bold */
+  src:
+    url("../assets/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  src:
+    url("../assets/fonts/Inter/Inter_18pt-Medium.ttf") format("truetype"); /* Keep TTF as fallback */
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500; /* Assuming Medium is weight 500 */
+  src:
+    url("../assets/fonts/Inter/Inter_18pt-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Corsa_Grotesk;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/CorsaGrotesk/Typedepot - Corsa Grotesk Regular.otf")
+      format("woff2"),
+    url("../assets/fonts/CorsaGrotesk/Typedepot - Corsa Grotesk Regular.otf")
+      format("woff"),
+    url("../assets/fonts/CorsaGrotesk/Typedepot - Corsa Grotesk Regular.otf")
+      format("opentype"); /* Keep OTF as fallback */
+}
+@font-face {
+  font-family: Corsa_Grotesk;
+  font-style: normal;
+  font-weight: 300;
+  src: url("../assets/fonts/CorsaGrotesk/Typedepot - Corsa Grotesk Regular.otf")
+      format("woff2"),
+    url("../assets/fonts/CorsaGrotesk/Typedepot - Corsa Grotesk Thin.otf")
+      format("woff"),
+    url("../assets/fonts/CorsaGrotesk/Typedepot - Corsa Grotesk Thin.otf")
+      format("opentype"); /* Keep OTF as fallback */
+}
 /*@font-face {*/
-/*    font-family: Inter;*/
+/*    font-family:Spaced;*/
 /*    font-style: normal;*/
-/*    font-weight: 900;*/
-/*    src: url("../assets/fonts/Inter/Poppins-Black.ttf");*/
+/*    font-weight: normal;*/
+/*    src: url("../assets/fonts/Spaced/Spaced OTF.otf");*/
 /*}*/
-
 @font-face {
-    font-family:CorsaGrotesk;
-    font-style: normal;
-    font-weight: normal;
-    src: url("../assets/fonts/CorsaGrotesk/Typedepot - Corsa Grotesk Regular.otf");
-}
-@font-face {
-    font-family:CorsaGrotesk;
-    font-style: normal;
-    font-weight: 300;
-    src: url("../assets/fonts/CorsaGrotesk/Typedepot - Corsa Grotesk Thin.otf");
-}
-@font-face {
-    font-family:Spaced;
-    font-style: normal;
-    font-weight: normal;
-    src: url("../assets/fonts/Spaced/Spaced OTF.otf");
+  font-family: Spaced;
+  font-style: normal;
+  font-weight: normal;
+  src: local("Spaced Regular"),
+    url("../assets/fonts/Spaced/Spaced OTF.woff") format("woff2"),
+    url("../assets/fonts/Spaced/Spaced OTF.woff") format("woff"),
+    url("../assets/fonts/Spaced/Spaced OTF.otf") format("opentype"); /* Add OTF as fallback */
 }
