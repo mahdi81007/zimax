@@ -1,0 +1,35 @@
+.cards:nth-child(odd) {
+    padding: 30px 0 30px 30px;
+}
+.cards:nth-child(odd) {
+    padding: 30px 0 30px 30px;
+}
+.cards:nth-child(even) {
+    padding: 30px 30px 30px 0;
+}
+
+.cards:first-child::before {
+    border-top: 0;
+    border-top-left-radius: 0;
+}
+.cards:nth-child(odd)::before {
+    left: 0px;
+    top: -4.5px;
+    bottom: -4.5px;
+    border-width: 5px 0 5px 5px;
+    border-radius: 50px 0 0 50px;
+}
+.cards::before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    border: solid var(--mantine-color-blue-6);
+}
+.cards:nth-child(even)::before {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-width: 5px 5px 5px 0;
+    border-radius: 0 50px 50px 0;
+}
+

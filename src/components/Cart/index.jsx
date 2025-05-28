@@ -1,63 +1,86 @@
-import React from 'react';
-import { Button, Center, Drawer } from '@mantine/core';
+import React, {useState} from 'react';
+import {Button, Center, Drawer, Modal} from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
 import classes from './index.module.css';
+import {useIsDesktop} from "@/utils/screen-size";
 
 function Index({
                    title,
-    id,
+                   id,
                    className,
                    children,
                    isMore = true,
-                   height = '', // default value if not provided
-    titleClassName,number,subTitle,img,bottomImg
+                   height = '',
+    isImg,
+                   titleClassName, number, subTitle, img, bottomImg, imgClassName, CartIcon
                }) {
-    const [drawerOpened, { open: openDrawer, close: closeDrawer }] = useDisclosure(false)
+    const [drawerOpened, {open: openDrawer, close: closeDrawer}] = useDisclosure(false)
+    const [openModal, setOpenModal] = useState(false)
+
+    const isPc = useIsDesktop();
+
     return (
         <>
             <div
                 id={id}
-                className={`${className}  relative cart mt-[24px] ${number?'pt-[60px]':''} p-6 bg-gradient-to-b from-gray-100 to-blue-100 rounded-3xl outline outline-1 outline-offset-[-1px] outline-gray-400`}
+                className={`${className}  relative cart mt-[24px] ${number ? 'pt-[60px]' : ''} p-6 bg-gradient-to-b from-gray-100 to-blue-100 rounded-3xl outline outline-1 outline-offset-[-1px] outline-gray-400`}
             >
-                {number&&<div className={'text-[134px] font-semibold absolute top-[-30px] left-2 text-blue-6 opacity-10'}>{number}</div>}
-                <div className={`${titleClassName}  text-[20px] mb-[16px] font-bold`}>{title}</div>
-                {subTitle && <div className={'mt-[8px]'}>{subTitle}</div>}
-                {img&&<img alt={'img'} src={img}/>}
-                <div className=" relative ">
-                    <div className={isMore?classes['gradiant-cart']:''} style={{height:isMore?height:''}}>{children}</div>
-                    <Center>
-                        {isMore && (
-                            <Button
-                                variant="subtle"
-                                size="md"
-                                color="blue"
-                                rightSection={<i className="icon-chevron"></i>}
-                                onClick={openDrawer}
-                            >
-                                Read more
-                            </Button>
-                        )}
-                    </Center>
-                    {bottomImg&&<img src={bottomImg} className={''} alt={'bottom-img'}/>}
-                </div>
+                <div className={'md:flex justify-center items-center '}>
 
-                {isMore && (
+                    <div>
+
+
+                        {number && <div
+                            className={'text-[134px] font-semibold absolute top-[-30px] left-2 text-blue-6 opacity-10'}>{number}</div>}
+                        <div>{CartIcon}</div>
+                        <div className={`${titleClassName}  text-[20px] mb-[16px] font-bold`}>{title}</div>
+                        {subTitle && <div className={'mt-[8px]'}>{subTitle}</div>}
+                        {img&&!isPc && <img alt={'img'} src={img} className={imgClassName}/>}
+                        <div className=" relative ">
+                            <div className={` ${isMore ? classes['gradiant-cart'] : ''} md:flex items-center justify-between`}
+                                 style={{height: isMore ? height : ''}}>{children}
+                                {isPc&&img && <img alt={'img'} src={img} className={imgClassName}/>}
+                            </div>
+                            <Center>
+                                {isMore && (
+                                    <Button
+                                        variant="subtle"
+                                        size="md"
+                                        color="blue"
+                                        rightSection={<i className="icon-chevron"></i>}
+                                        onClick={() => {
+                                            setOpenModal(true)
+                                            openDrawer()
+                                        }}
+                                    >
+                                        Read more
+                                    </Button>
+                                )}
+                            </Center>
+                        </div>
+                    </div>
+                    {bottomImg && <img src={bottomImg} className={'md:w-[270px] h-[252px] mx-auto'} alt={'bottom-img'}/>}
+
+                </div>
+                {isMore && !isPc && (
                     <Drawer
                         opened={drawerOpened}
                         onClose={closeDrawer}
                         position="bottom"
-                        withCloseButton={title?true:false}
+                        // withCloseButton={title?false:true}
+                        withCloseButton={false}
                         classNames={{
-                            title: 'w-full text-blue-600 font-bold text-[18px]',
+                            title: 'w-full text-blue-6 font-bold text-[18px]',
                             header: 'w-full',
                         }}
                         size="100%"
                         title={
-                            <div className="w-full flex justify-between items-center text-Primary">
+                            <div
+                                className={`w-full flex ${title ? 'justify-between' : 'justify-end'}  items-center text-Primary`}>
                                 {title}
                                 <div
                                     onClick={closeDrawer}
-                                    className="w-[40px] h-[20px] cursor-pointer bg-background-gray-light rounded-3xl inline-flex justify-center items-center"
+                                    className="p-[8px] cursor-pointer bg-background-gray-light rounded-3xl inline-flex justify-center items-center"
                                 >
                                     {/* SVG Icon */}
                                     <svg
@@ -76,8 +99,20 @@ function Index({
                             </div>
                         }
                     >
-                        <p>{children}</p>
+                        <p className={'text-[18px]! text-gray-6'}>{children}</p>
                     </Drawer>
+                )}
+                {isMore && isPc && (
+                    <Modal opened={openModal} onClose={() => setOpenModal(false)}
+                           centered={true}
+                           radius={'md'}
+                           title={<div
+                               className={`w-full flex ${title ? 'justify-between' : 'justify-end'}  items-center text-Primary`}>{title}</div>}
+                    >
+                        <p className={'text-[18px]! text-gray-6'}>{children}</p>
+
+
+                    </Modal>
                 )}
             </div>
         </>

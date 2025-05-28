@@ -1,0 +1,75 @@
+.gradiant-cart{
+   background: -webkit-linear-gradient(#444, #fff);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+  margin-top:10px;
+  height: 280px;
+  overflow: hidden;
+
+ }
+.cards{
+  position: relative;
+}
+.cards:nth-child(odd) {
+  padding: 30px 0 30px 30px;
+}
+.cards:nth-child(odd) {
+  padding: 30px 30px 30px 30px;
+}
+.cards:nth-child(even) {
+  padding: 30px 30px 30px 30px;
+}
+
+.cards:first-child::before {
+  border-top: 0;
+  border-top-left-radius: 0!important;
+}
+.cards:nth-child(odd)::before {
+  left: 0px;
+  top: -4.5px;
+  bottom: -4.5px;
+  border-width: 5px 0 5px 5px;
+  border-radius: 50px 0 0 50px;
+}
+.cards::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  border: solid var(--mantine-color-blue-6);
+}
+.cards:nth-child(even)::before {
+  right: 0;
+  top: 0;
+  bottom: -1px;
+  border-width: 5px 5px 5px 0;
+  border-radius: 0 50px 50px 0;
+}
+.cards:last-child::before {
+  border-bottom-left-radius: 0!important;
+  border-bottom: 0!important;
+}
+.cards:nth-child(2n)::before {
+  right: 0;
+  top: 0;
+  bottom: -1px;
+  border-width: 5px 5px 5px 0;
+  border-radius: 0 50px 50px 0;
+}
+.info{
+
+}
+.cards:nth-child(even)  > .titled::before {
+  right: -12px;
+}
+.cards:nth-child(odd)  > .titled::before {
+  left: -12px;
+}
+.titled::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 999px;
+  border: 4px solid var(--mantine-color-blue-6);
+}
