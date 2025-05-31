@@ -27,13 +27,13 @@
 }
 
 .delay-900 {
-    animation-delay: 2.5s;
-}
-.delay-1200{
     animation-delay: 3s;
 }
+.delay-1200{
+    animation-delay: 5s;
+}
 .delay-1500{
-    animation-delay: 3.5s;
+    animation-delay: 7s;
 }
 
 
@@ -69,3 +69,46 @@
     opacity: 0;
     height: 97vh;
 }
+
+
+.delay-\[100ms\] { animation-delay: 0.1s; }
+.delay-\[300ms\] { animation-delay: 0.3s; }
+.delay-\[500ms\] { animation-delay: 0.5s; }
+.delay-\[700ms\] { animation-delay: 0.7s; }
+
+@keyframes bgReveal {
+    0% {
+        background: linear-gradient(to bottom, transparent, transparent),
+         radial-gradient(71.17% 71.17% at 50% 50%, #228BE6 0%, #0B2E4D 100%);
+        clip-path: inset(100% 0 0 0); /* Reveal from top */
+        opacity: 0;
+    }
+    100% {
+        background: linear-gradient(to bottom, transparent 0%, transparent 0%),
+        radial-gradient(71.17% 71.17% at 50% 50%, #228BE6 0%, #0B2E4D 100%);
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+    }
+}
+
+.animate-bg-fade {
+    animation: bgReveal 1s ease-out forwards;
+    opacity: 0;
+}
+@keyframes wipeIn {
+    0% {
+        clip-path: inset(0 100% 0 0); /* Reveal from left to right */
+        opacity: 0;
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+    }
+}
+
+.wipe-in {
+    animation: wipeIn 0.8s ease-out forwards;
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+}
+

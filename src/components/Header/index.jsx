@@ -12,7 +12,7 @@ import clsx from "clsx";
 import {links} from "@/content";
 
 
-export function Header() {
+export function Header({className}) {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
     const [scrolledPastHero, setScrolledPastHero] = useState(false);
     const [hidden, setHidden] = useState(false);
@@ -47,10 +47,11 @@ export function Header() {
     }, [lastScrollY]);
 
     return (
-        <   >
+        <>
             <header className={clsx(classes.header, {
                 [classes.scrolled]: scrolledPastHero,
                 [classes.hidden]: hidden && scrolledPastHero,
+                className
             })}>
                 <Group justify="space-between" h="100%" px={16}>
                     <a href={'./'}>
